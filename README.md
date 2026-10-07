@@ -4,52 +4,46 @@ A discovery-led product case for Threads (Meta): find one evidenced user problem
 
 | | |
 |---|---|
-| **Evidence** | 8 to 10 user interviews plus 150 coded App Store and Google Play reviews |
-| **Method** | One shared codebook for both sources, so every claim is backed by a review share and an interview count |
-| **Bar for a problem** | Raised unprompted in 30%+ of interviews **and** 10%+ of reviews |
-| **Deliverables** | Discovery synthesis, PRD, one-page exec summary |
+| **Problem found** | Users can't make lasting changes to their feed. Feed relevance is **36% of non-bug complaints** across 60 coded public items (2023 to 2026), and Meta's 2026 controls expire in 1 to 7 days. |
+| **Proposal** | Durable Feed Preferences: a "keep this" option, a repeat-request prompt, and an Interests page |
+| **North Star** | Weekly Satisfied Feed Users |
+| **Test** | 50/50 user-level A/B test, about 780K users per arm, 4 weeks, 6 guardrails |
+| **Evidence** | 60 public items from 13 sources, coded with one codebook, plus published usage data |
 
-## Status
+## Read in this order
 
-| Step | Status | File |
+1. [**Exec summary**](deliverables/exec_summary.md): one page.
+2. [**PRD**](deliverables/prd.md): problem, goals and non-goals, personas, user stories, metrics, A/B test, rollout.
+3. [**Discovery synthesis**](deliverables/discovery_synthesis.md): evidence, insights, problem statement, RICE prioritization.
+4. [**Evidence**](research/public_evidence.csv), [analysis](research/public_evidence_analysis.md), and [published data](research/published_data.md).
+
+## Method
+
+| Step | What | File |
 |---|---|---|
-| Research plan and hypotheses | Done | [`discovery/01_research_plan.md`](discovery/01_research_plan.md) |
-| Screener | Done | [`discovery/02_screener.md`](discovery/02_screener.md) |
-| Interview guide (45 min) | Done | [`discovery/03_interview_guide.md`](discovery/03_interview_guide.md) |
-| Review codebook | Done | [`reviews/codebook.md`](reviews/codebook.md) |
-| Review pull and sampling script | Done | [`reviews/fetch_reviews.py`](reviews/fetch_reviews.py) |
-| Review analysis and triangulation script | Done | [`reviews/analyze_reviews.py`](reviews/analyze_reviews.py) |
-| Code 150 reviews | To do | `reviews/review_coding_sheet.csv` |
-| Interviews | To do | [`synthesis/interview_tracker.csv`](synthesis/interview_tracker.csv) |
-| Discovery synthesis | Next | `deliverables/discovery_synthesis.md` |
-| PRD | Next | `deliverables/prd.md` |
-| One-page exec summary | Next | `deliverables/exec_summary.md` |
-
-## How the evidence flows
-
-```
-App Store + Google Play --fetch_reviews.py--> 150-review sample --code with codebook.md--> review_coding_sheet.csv --+
-                                                                                                                    +--> analyze_reviews.py --> review_analysis.md
-8 to 10 interviews --interview_guide.md--> notes --tag with the same codes--> interview_tracker.csv ----------------+       (theme shares + triangulation)
-                                                                                                                                    |
-                                                                          problem statement -> solutions (impact vs effort) -> PRD -> exec summary
-```
-
-## Run the review analysis
+| Codebook | 12 themes with include and exclude rules, shared across all sources | [`reviews/codebook.md`](reviews/codebook.md) |
+| Public user research | 60 items from forums, a help forum, press, blogs and review sites, each linked and dated | [`research/public_evidence.csv`](research/public_evidence.csv) |
+| Theme analysis | Theme shares overall, excluding bugs, and by source type | [`research/analyze_public.py`](research/analyze_public.py) |
+| Published data | Meta-reported usage, Similarweb estimates, and a feed-feature timeline | [`research/published_data.md`](research/published_data.md) |
+| Prioritization | RICE across 4 solutions, with assumptions stated | [`deliverables/discovery_synthesis.md`](deliverables/discovery_synthesis.md) |
 
 ```bash
 pip install -r requirements.txt
-python reviews/fetch_reviews.py          # pulls recent reviews, writes a 150-review coding sheet
-# code the sheet using reviews/codebook.md
-python reviews/analyze_reviews.py        # writes reviews/review_analysis.md
+python research/analyze_public.py     # rebuilds the theme analysis
 ```
 
-Reviewer names are never stored. Interview participants appear only as P01 to P10.
+## Next steps
 
-## What the PRD will cover
+| Step | Status | File |
+|---|---|---|
+| Code 150 app store reviews | Planned | [`reviews/fetch_reviews.py`](reviews/fetch_reviews.py), [`reviews/analyze_reviews.py`](reviews/analyze_reviews.py) |
+| User interviews or survey | Planned | [`discovery/03_interview_guide.md`](discovery/03_interview_guide.md), [`discovery/02_screener.md`](discovery/02_screener.md) |
+| Human spot-check of AI-assisted coding | Planned | `coder` column in the evidence file |
 
-Problem, goals and non-goals, personas from interview segments, user stories, a North Star metric with input metrics, an A/B test design with guardrail metrics and sample size, and a phased rollout with go and no-go criteria.
+## Limitations
+
+Public data only: forums and press skew toward strong opinions, and the help forum skews toward bugs. Coding was AI-assisted and is marked for human spot-check. RICE inputs and A/B test baselines are labeled planning assumptions, not measured data.
 
 ## Disclaimer
 
-Independent student project. Not affiliated with or endorsed by Meta. Uses only public app store reviews and interviews with consenting participants.
+Independent project. Not affiliated with or endorsed by Meta. Uses only public information.

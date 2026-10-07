@@ -1,5 +1,7 @@
 # Research plan: Threads discovery
 
+> **Update:** the first round used public user research (60 coded items from forums, press and blogs) in place of interviews. Interviews and app store reviews remain planned as the next round. See [`../deliverables/discovery_synthesis.md`](../deliverables/discovery_synthesis.md).
+
 ## Goal
 
 Find the single most important problem that keeps people from getting value out of Threads, backed by two independent sources: user interviews and app store reviews.
