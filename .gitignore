@@ -1,0 +1,7 @@
+# Raw pulls can be regenerated; the coded sample is committed.
+reviews/raw_reviews.csv
+recordings/
+*.m4a
+*.mp4
+__pycache__/
+.venv/
