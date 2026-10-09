@@ -1,5 +1,7 @@
 # Threads product case study
 
+**[View the case study site](https://claude.ai/artifact/9kuYfPsXQgDw1re4dLfe1o)**
+
 A discovery-led product case for Threads (Meta): find one evidenced user problem, prioritize solutions, and write the PRD to ship the best one.
 
 | | |
